@@ -9,14 +9,13 @@
   <!-- Sidebar -->
   <aside
     id="main-sidebar"
-    class="fixed md:relative inset-y-0 left-0 z-50 w-64 bg-crimson text-white flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300">
+    class="fixed md:relative inset-y-0 left-0 z-50 w-72 sm:w-64 bg-crimson text-white flex flex-col transform -translate-x-full md:translate-x-0 transition-all duration-300 shadow-xl md:shadow-none">
 
     <!-- Header -->
-    <div
-      class="p-6 border-b border-crimson-dark flex items-center justify-between">
+    <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between">
 
       <div>
-        <h2 id="sidebar-store-name" class="text-lg font-bold">
+        <h2 id="sidebar-store-name" class="text-lg font-bold" class="text-xl font-bold tracking-tight">
           Seblak Mama Ica
         </h2>
         <p class="text-sm text-red-200 mt-1">
@@ -32,7 +31,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="flex-1 p-4 space-y-2">
+    <nav class="flex-1 p-3 space-y-1">
       <button
         id="nav-products"
         onclick="switchView('products')"
