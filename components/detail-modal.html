@@ -1,0 +1,44 @@
+
+      <div
+        id="detail-modal"
+        class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h2
+                id="modal-product-name"
+                class="text-lg font-bold text-gray-800">
+                Nama Produk
+              </h2>
+              <p
+                id="modal-product-price"
+                class="text-crimson font-bold text-sm mt-0.5">
+                Rp 0
+              </p>
+            </div>
+            <button
+              onclick="closeDetailModal()"
+              class="text-gray-400 hover:text-gray-600">
+              <i data-lucide="x" style="width: 22px; height: 22px"></i>
+            </button>
+          </div>
+          <div
+            class="bg-gray-50 rounded-xl p-3.5 mb-5 text-xs text-gray-600 leading-relaxed border border-gray-100">
+            <span class="font-bold text-gray-700 block mb-1"
+              >Komposisi / Isian:</span
+            >
+            <span id="modal-product-details"
+              >Detail komposisi bahan masakan...</span
+            >
+          </div>
+          <div id="modal-variants-container" class="space-y-4 mb-6"></div>
+          <button
+            onclick="confirmAddToCart()"
+            class="w-full bg-pos-green hover:bg-pos-green-hover text-white font-semibold py-3 rounded-lg transition flex items-center justify-center gap-2">
+            <i
+              data-lucide="shopping-cart"
+              style="width: 18px; height: 18px"></i>
+            Tambah ke Pesanan
+          </button>
+        </div>
+      </div>

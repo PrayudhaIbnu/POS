@@ -1,0 +1,70 @@
+            <!-- VIEW 2: REPORTS PANEL -->
+            <div id="view-reports" class="space-y-6 hidden">
+              <h2 class="text-xl font-bold text-gray-800">Laporan Penjualan</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div
+                  class="bg-white p-5 rounded-xl border border-gray-200 flex items-center gap-4">
+                  <div
+                    class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-pos-green">
+                    <i
+                      data-lucide="wallet"
+                      style="width: 24px; height: 24px"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-500">Total Pendapatan</p>
+                    <p
+                      id="report-total-revenue"
+                      class="text-2xl font-bold text-gray-800">
+                      Rp 0
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="bg-white p-5 rounded-xl border border-gray-200 flex items-center gap-4">
+                  <div
+                    class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                    <i
+                      data-lucide="shopping-bag"
+                      style="width: 24px; height: 24px"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-500">Total Transaksi</p>
+                    <p
+                      id="report-total-orders"
+                      class="text-2xl font-bold text-gray-800">
+                      0
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- History Table -->
+              <div
+                class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div class="p-5 border-b border-gray-200">
+                  <h3 class="font-bold text-gray-800">Riwayat Transaksi</h3>
+                </div>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-left border-collapse">
+                    <thead>
+                      <tr
+                        class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase">
+                        <th class="p-4">Waktu</th>
+                        <th class="p-4">ID Order</th>
+                        <th class="p-4">Metode</th>
+                        <th class="p-4 text-right">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      id="report-table-body"
+                      class="text-sm text-gray-600 divide-y divide-gray-100">
+                      <tr>
+                        <td colspan="4" class="p-8 text-center text-gray-400">
+                          Belum ada riwayat transaksi
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
