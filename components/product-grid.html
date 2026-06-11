@@ -1,24 +1,30 @@
             <!-- VIEW 1: PRODUCTS CASHIER -->
             <div id="view-products" class="space-y-6">
-              <div
-                class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <h2 class="text-xl font-bold text-gray-800">Menu Items</h2>
-                <div class="relative">
-                  <i
-                    data-lucide="search"
-                    class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-                    style="width: 18px; height: 18px"></i>
-                  <input
-                    id="search-input"
-                    type="text"
-                    oninput="filterProducts()"
-                    placeholder="Search products..."
-                    class="w-full sm:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-crimson" />
-                </div>
-              </div>
+ <div class="space-y-3">
+  <h2 class="text-2xl font-bold text-gray-800">
+    Menu Items
+  </h2>
+
+  <div class="relative w-full">
+    <i
+      data-lucide="search"
+      class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+      style="width:18px;height:18px">
+    </i>
+
+    <input
+      id="search-input"
+      type="text"
+      oninput="filterProducts()"
+      placeholder="Search products..."
+      class="w-full h-12 pl-10 pr-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-crimson">
+  </div>
+</div>
 
               <!-- Filter Kategori Tabs -->
-              <div id="category-filters" class="flex flex-wrap gap-2">
+              <div
+  id="category-filters"
+  class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                 <button
                   onclick="setCategoryFilter('All')"
                   class="cat-filter-btn px-4 py-2 rounded-full text-sm font-medium bg-crimson text-white shadow-sm">
