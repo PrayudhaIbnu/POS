@@ -43,45 +43,68 @@ function renderCustomerProducts() {
   grid.innerHTML = products
     .map(
       (p) => `
-                              <div
-                                class="bg-white rounded-xl overflow-hidden shadow">
+<div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition flex flex-col justify-between">
+  <div>
+    <div class="relative h-32 bg-gray-200 flex items-center justify-center">
+      <img
+        src="${p.images || "https://via.placeholder.com/150"}"
+        alt="${p.name}"
+        class="object-cover h-full w-full ${p.stock <= 0 ? "opacity-60" : ""}"
+      />
 
-                                <img
-                                  src="${p.images || "https://via.placeholder.com/300"}"
-                                  class="w-full h-40 object-cover">
+      ${
+        p.stock <= 0
+          ? `
+          <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+            Stok Habis
+          </span>
+        `
+          : ""
+      }
+    </div>
 
-                                <div class="p-3">
+    <div class="p-3 pb-0">
+      <p class="font-semibold text-gray-800 text-sm truncate">
+        ${p.name}
+      </p>
 
-                                  <h3 class="font-semibold">
-                                    ${p.name}
-                                  </h3>
+      <p class="text-gray-400 text-[10px] line-clamp-2 mt-0.5 min-h-[30px]">
+        ${p.details || "Tidak ada rincian deskripsi item."}
+      </p>
 
-                                  <p class="text-sm text-gray-500">
-                                    ${p.details || "Tidak ada rincian deskripsi item."}
-                                  </p>
+      <p class="mt-1 text-xs ${
+        p.stock <= 0
+          ? "text-red-500 font-semibold"
+          : p.stock <= 10
+            ? "text-yellow-500 font-semibold"
+            : "text-green-600"
+      }">
+        Stok: ${p.stock ?? 0}
+      </p>
+    </div>
+  </div>
 
-                                  <div class="mt-2">
+  <div class="p-3 pt-1">
+    <p class="text-crimson font-bold text-sm">
+      Rp ${p.price.toLocaleString()}
+    </p>
 
-                                    <div
-                                      class="text-crimson font-bold">
+    <button
+      ${p.stock <= 0 ? "disabled" : `onclick="openDetailModal(${p.id})"`}
+      class="mt-2 w-full ${
+        p.stock <= 0
+          ? "bg-gray-300 cursor-not-allowed text-gray-500"
+          : "bg-pos-green hover:bg-pos-green-hover text-white"
+      } text-sm font-medium py-2 rounded-lg flex items-center justify-center gap-1 transition"
+    >
+      <i data-lucide="${
+        p.stock <= 0 ? "package-x" : "eye"
+      }" style="width:14px;height:14px;"></i>
 
-                                      Rp ${p.price.toLocaleString()}
-
-                                    </div>
-
-                                    <button
-                                      onclick="openDetailModal(${p.id})"
-                                      class="mt-2 w-full bg-pos-green text-white py-2 rounded">
-
-                                      Tambah
-
-                                    </button>
-
-                                  </div>
-
-                                </div>
-
-                              </div>
+      ${p.stock <= 0 ? "Stok Habis" : "Lihat"}
+    </button>
+  </div>
+</div>
                             `,
     )
     .join("");

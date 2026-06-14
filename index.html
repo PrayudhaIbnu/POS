@@ -21,8 +21,7 @@
     <!-- Font -->
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
 
     <!-- App -->
     <script src="js/components.js"></script>
@@ -71,42 +70,47 @@
       <div id="customer-menu-component"></div>
 
       <!-- DASHBOARD -->
-      <div id="page-dashboard" class="hidden h-full w-full">
-        <div class="flex flex-col lg:flex-row h-full relative">
+      <div id="page-dashboard" class="hidden h-screen w-full">
+        <div class="flex h-full relative">
           <!-- Sidebar -->
           <div
             id="sidebar-component"
-            class="fixed lg:relative z-50 lg:z-auto"
-          ></div>
+            class="fixed lg:relative z-50 lg:z-auto"></div>
 
-          <!-- Main Content -->
-          <main
-            class="flex-1 w-full overflow-auto p-3 mt-12 sm:p-4 lg:p-6 pb-24"
-          >
-            <!-- Breadcrumb -->
-            <nav class="flex mb-5" aria-label="Breadcrumb">
-              <ol id="breadcrumb" class="inline-flex items-center space-x-2">
-                <li class="flex items-center">
-                  <button
-                    onclick="switchView('products')"
-                    class="flex items-center text-sm font-medium text-gray-500 hover:text-crimson"
-                  >
-                    <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+          <!-- Content Area -->
+          <div class="flex-1 flex flex-col min-w-0">
+            <!-- Main Content -->
+            <main class="flex-1 overflow-auto p-3 sm:p-4 pt-20 lg:pt-6">
+              <!-- Breadcrumb -->
+              <nav class="flex mb-5" aria-label="Breadcrumb">
+                <ol id="breadcrumb" class="inline-flex items-center space-x-2">
+                  <li class="flex items-center">
+                    <button
+                      onclick="switchView('products')"
+                      class="flex items-center text-sm font-medium text-gray-500 hover:text-crimson">
+                      <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+                      Home
+                    </button>
+                  </li>
+                </ol>
+              </nav>
 
-                    Home
-                  </button>
-                </li>
-              </ol>
-            </nav>
+              <div id="product-grid-component"></div>
 
-            <div id="product-grid-component"></div>
-            <div id="reports-component"></div>
-            <div id="stock-modal"></div>
-            <div id="stock-component"></div>
-          </main>
+              <div id="reports-component"></div>
+
+              <div id="stock-component"></div>
+            </main>
+
+            <!-- Sticky Footer -->
+            <div
+              id="footer-component"
+              class="sticky bottom-0 z-20 bg-white border-t border-gray-200"></div>
+          </div>
 
           <!-- Cart -->
           <div id="customer-cart-component"></div>
+          <div id="stock-modal-component"></div>
         </div>
       </div>
 

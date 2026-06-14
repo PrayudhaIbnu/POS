@@ -49,6 +49,14 @@ function renderCart() {
     totalEl.textContent = "Rp " + total.toLocaleString();
   }
 
+  const desktopBadge = document.getElementById("desktop-cart-badge");
+
+  if (desktopBadge) {
+    const totalQty = cashierCart.reduce((sum, item) => sum + item.qty, 0);
+
+    desktopBadge.textContent = totalQty;
+  }
+
   if (badge) {
     if (cart.length > 0) {
       badge.textContent = cart.length;
@@ -213,15 +221,6 @@ function toggleMobileCart() {
   const sidebar = document.getElementById("checkout-sidebar");
   const overlay = document.getElementById("cart-overlay");
 
-  if (!sidebar || !overlay) return;
-
-  if (sidebar.classList.contains("translate-x-full")) {
-    sidebar.classList.remove("translate-x-full");
-    sidebar.classList.add("translate-x-0");
-    overlay.classList.remove("hidden");
-  } else {
-    sidebar.classList.remove("translate-x-0");
-    sidebar.classList.add("translate-x-full");
-    overlay.classList.add("hidden");
-  }
+  sidebar.classList.toggle("translate-x-full");
+  overlay.classList.toggle("hidden");
 }

@@ -114,7 +114,27 @@ function confirmPayment() {
     total: total,
   });
 
+  console.log("REPORT MASUK:", reports);
+
+  cart.forEach((item) => {
+    const product = products.find((p) => p.id === item.id);
+
+    if (product) {
+      product.stock = Math.max(0, product.stock - item.qty);
+    }
+  });
+
+  saveProducts();
+  renderStock();
+
   saveReports();
+
+  if (typeof renderReports === "function") {
+    renderReports();
+  }
+
+  renderReports();
+  // renderFooterStats();
 
   closePayment();
   document.getElementById("receipt-modal").classList.remove("hidden");

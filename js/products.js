@@ -207,23 +207,68 @@ function filterProducts() {
   grid.innerHTML = filtered
     .map(
       (p) => `
-                                  <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition flex flex-col justify-between">
-                                    <div>
-                                      <div class="h-32 bg-gray-200 flex items-center justify-center">
-                                        <img src="${p.images || "https://via.placeholder.com/150"}" alt="${p.name}" class="object-cover h-full w-full" />
-                                      </div>
-                                      <div class="p-3 pb-0">
-                                        <p class="font-semibold text-gray-800 text-sm truncate">${p.name}</p>
-                                        <p class="text-gray-400 text-[10px] line-clamp-2 mt-0.5 min-h-[30px]">${p.details || "Tidak ada rincian deskripsi item."}</p>
-                                      </div>
-                                    </div>
-                                    <div class="p-3 pt-1">
-                                      <p class="text-crimson font-bold text-sm">Rp ${p.price.toLocaleString()}</p>
-                                      <button onclick="openDetailModal(${p.id})" class="mt-2 w-full bg-pos-green hover:bg-pos-green-hover text-white text-sm font-medium py-2 rounded-lg flex items-center justify-center gap-1 transition">
-                                        <i data-lucide="eye" style="width:14px;height:14px;"></i> Lihat
-                                      </button>
-                                    </div>
-                                  </div>
+<div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition flex flex-col justify-between">
+  <div>
+    <div class="relative h-32 bg-gray-200 flex items-center justify-center">
+      <img
+        src="${p.images || "https://via.placeholder.com/150"}"
+        alt="${p.name}"
+        class="object-cover h-full w-full ${p.stock <= 0 ? "opacity-60" : ""}"
+      />
+
+      ${
+        p.stock <= 0
+          ? `
+          <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+            Stok Habis
+          </span>
+        `
+          : ""
+      }
+    </div>
+
+    <div class="p-3 pb-0">
+      <p class="font-semibold text-gray-800 text-sm truncate">
+        ${p.name}
+      </p>
+
+      <p class="text-gray-400 text-[10px] line-clamp-2 mt-0.5 min-h-[30px]">
+        ${p.details || "Tidak ada rincian deskripsi item."}
+      </p>
+
+      <p class="mt-1 text-xs ${
+        p.stock <= 0
+          ? "text-red-500 font-semibold"
+          : p.stock <= 10
+            ? "text-yellow-500 font-semibold"
+            : "text-green-600"
+      }">
+        Stok: ${p.stock ?? 0}
+      </p>
+    </div>
+  </div>
+
+  <div class="p-3 pt-1">
+    <p class="text-crimson font-bold text-sm">
+      Rp ${p.price.toLocaleString()}
+    </p>
+
+    <button
+      ${p.stock <= 0 ? "disabled" : `onclick="openDetailModal(${p.id})"`}
+      class="mt-2 w-full ${
+        p.stock <= 0
+          ? "bg-gray-300 cursor-not-allowed text-gray-500"
+          : "bg-pos-green hover:bg-pos-green-hover text-white"
+      } text-sm font-medium py-2 rounded-lg flex items-center justify-center gap-1 transition"
+    >
+      <i data-lucide="${
+        p.stock <= 0 ? "package-x" : "eye"
+      }" style="width:14px;height:14px;"></i>
+
+      ${p.stock <= 0 ? "Stok Habis" : "Lihat"}
+    </button>
+  </div>
+</div>
                                 `,
     )
     .join("");
@@ -244,9 +289,24 @@ function setCategoryFilter(category) {
   filterProducts();
 }
 
+function refreshProducts() {
+  loadProducts?.();
+  filterProducts();
+  renderStock?.();
+
+  lucide.createIcons();
+
+  showToast?.("Data berhasil diperbarui");
+}
+
 function openDetailModal(id) {
   const product = products.find((p) => p.id === id);
   if (!product) return;
+
+  if (!product || product.stock <= 0) {
+    alert("Stok produk habis");
+    return;
+  }
 
   activeProductForModal = product;
   document.getElementById("modal-product-name").textContent = product.name;
@@ -289,7 +349,7 @@ function openDetailModal(id) {
 
 function closeDetailModal() {
   document.getElementById("detail-modal").classList.add("hidden");
-  activeProductForModal = null;
+  activeProductForModal = 5;
 }
 
 function selectVariantOption(btn) {
@@ -329,6 +389,7 @@ function saveProduct() {
         "https://static.wixstatic.com/media/22cafb_009aa62f9fb84c499511ff5f5d070361~mv2.jpeg/v1/fill/w_228,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Placeholder.jpeg",
     });
     saveProducts();
+    renderFooterStats();
     navigateTo("dashboard");
   }
 }
