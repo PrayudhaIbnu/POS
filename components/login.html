@@ -1,19 +1,17 @@
 <div
   id="page-login"
-  class="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-100 flex items-center justify-center p-4">
-
+  class="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-100 flex items-center justify-center p-4"
+>
   <div
-    class="w-full max-w-5xl bg-white rounded-3xl overflow-hidden shadow-2xl grid lg:grid-cols-2">
-
+    class="w-full max-w-5xl bg-white rounded-3xl overflow-hidden shadow-2xl grid lg:grid-cols-2"
+  >
     <!-- LEFT -->
     <div
-      class="hidden lg:flex flex-col justify-center bg-crimson text-white p-12">
-
+      class="hidden lg:flex flex-col justify-center bg-crimson text-white p-12"
+    >
       <div class="mb-8">
         <h1 class="text-4xl font-bold">Seblak Mama Ica</h1>
-        <p class="text-red-100 mt-3">
-          Sistem Kasir & Pemesanan Digital
-        </p>
+        <p class="text-red-100 mt-3">Sistem Kasir & Pemesanan Digital</p>
       </div>
 
       <div class="space-y-5">
@@ -36,24 +34,21 @@
 
     <!-- RIGHT -->
     <div class="p-8 lg:p-12">
-
       <div class="text-center mb-8">
         <div
-          class="w-20 h-20 rounded-2xl bg-red-100 flex items-center justify-center mx-auto mb-4">
+          class="w-20 h-20 rounded-2xl bg-red-100 flex items-center justify-center mx-auto mb-4"
+        >
           <i
             data-lucide="utensils-crossed"
             class="text-crimson"
-            style="width:40px;height:40px">
+            style="width: 40px; height: 40px"
+          >
           </i>
         </div>
 
-        <h2 class="text-3xl font-bold text-gray-800">
-          Login Kasir
-        </h2>
+        <h2 class="text-3xl font-bold text-gray-800">Login Kasir</h2>
 
-        <p class="text-gray-500 mt-2">
-          Masuk menggunakan akun kasir
-        </p>
+        <p class="text-gray-500 mt-2">Masuk menggunakan akun kasir</p>
       </div>
 
       <!-- LOGIN FORM -->
@@ -62,8 +57,8 @@
           event.preventDefault();
           loginCashier();
         "
-        class="space-y-4">
-
+        class="space-y-4"
+      >
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">
             Username
@@ -73,14 +68,17 @@
             <i
               data-lucide="user"
               class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              style="width:18px;height:18px">
+              style="width: 18px; height: 18px"
+            >
             </i>
 
             <input
               id="cashier-username"
               type="text"
               placeholder="Masukkan username"
-              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-crimson focus:outline-none">
+              value="admin"
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-crimson focus:outline-none"
+            />
           </div>
         </div>
 
@@ -93,23 +91,26 @@
             <i
               data-lucide="lock"
               class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              style="width:18px;height:18px">
+              style="width: 18px; height: 18px"
+            >
             </i>
 
             <input
               id="cashier-password"
               type="password"
+              value="123456"
               placeholder="Masukkan password"
-              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-crimson focus:outline-none">
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-crimson focus:outline-none"
+            />
           </div>
         </div>
 
         <button
           type="submit"
-          class="w-full bg-crimson hover:bg-crimson-dark text-white font-semibold py-3 rounded-xl transition">
+          class="w-full bg-crimson hover:bg-crimson-dark text-white font-semibold py-3 rounded-xl transition"
+        >
           Login Kasir
         </button>
-
       </form>
 
       <!-- Divider -->
@@ -122,62 +123,56 @@
       <!-- CUSTOMER -->
       <button
         onclick="showCustomerForm()"
-        class="w-full border border-gray-300 hover:bg-gray-50 py-3 rounded-xl font-semibold text-gray-700 transition flex items-center justify-center gap-2">
-
+        class="w-full border border-gray-300 hover:bg-gray-50 py-3 rounded-xl font-semibold text-gray-700 transition flex items-center justify-center gap-2"
+      >
         <i data-lucide="user-round"></i>
         Pesan Sebagai Customer
       </button>
 
       <!-- CUSTOMER FORM -->
       <div id="customer-entry" class="hidden mt-6">
-
         <div class="border rounded-2xl p-5 bg-gray-50">
-
-          <h3 class="font-bold text-gray-800 mb-4">
-            Data Customer
-          </h3>
+          <h3 class="font-bold text-gray-800 mb-4">Data Customer</h3>
 
           <form
             onsubmit="
               event.preventDefault();
               startCustomerOrder();
-            ">
-
+            "
+          >
             <input
               id="customer-name"
               type="text"
               placeholder="Nama Customer"
-              class="w-full border rounded-xl px-4 py-3 mb-3">
+              class="w-full border rounded-xl px-4 py-3 mb-3"
+            />
 
             <input
               id="customer-table"
               type="text"
               placeholder="Nomor Meja / Nomor HP"
-              class="w-full border rounded-xl px-4 py-3 mb-4">
+              class="w-full border rounded-xl px-4 py-3 mb-4"
+            />
 
             <div class="flex gap-3">
-
               <button
                 type="button"
                 onclick="hideCustomerForm()"
-                class="flex-1 bg-gray-200 hover:bg-gray-300 py-3 rounded-xl font-medium">
+                class="flex-1 bg-gray-200 hover:bg-gray-300 py-3 rounded-xl font-medium"
+              >
                 Batal
               </button>
 
               <button
                 type="submit"
-                class="flex-1 bg-pos-green hover:bg-pos-green-hover text-white py-3 rounded-xl font-medium">
+                class="flex-1 bg-pos-green hover:bg-pos-green-hover text-white py-3 rounded-xl font-medium"
+              >
                 Lanjut
               </button>
-
             </div>
-
           </form>
-
         </div>
-
       </div>
-
     </div>
   </div>
 </div>

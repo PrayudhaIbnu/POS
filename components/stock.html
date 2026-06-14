@@ -1,0 +1,106 @@
+<div id="view-stock" class="hidden space-y-6">
+  <!-- HEADER -->
+  <div
+    class="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+  >
+    <div>
+      <h1 class="text-2xl font-bold text-gray-800">Stock Management</h1>
+
+      <p class="text-sm text-gray-500 mt-1">
+        Kelola jumlah stok berdasarkan menu yang tersedia
+      </p>
+    </div>
+
+    <!-- Search -->
+    <div class="relative">
+      <i
+        data-lucide="search"
+        class="absolute left-3 top-3 w-4 h-4 text-gray-400"
+      >
+      </i>
+
+      <input
+        id="stock-search"
+        type="text"
+        placeholder="Cari menu..."
+        oninput="searchStock()"
+        class="pl-10 pr-4 py-2 border rounded-lg w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-crimson"
+      />
+    </div>
+  </div>
+
+  <!-- SUMMARY CARD -->
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <!-- Total Menu -->
+
+    <div class="bg-white rounded-xl border shadow-sm p-5">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm text-gray-500">Total Menu</p>
+
+          <h2 id="total-menu-stock" class="text-3xl font-bold mt-2">0</h2>
+        </div>
+
+        <div class="bg-blue-100 p-3 rounded-lg">
+          <i data-lucide="utensils" class="text-blue-600"> </i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Low Stock -->
+
+    <div class="bg-white rounded-xl border shadow-sm p-5">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm text-gray-500">Stok Menipis</p>
+
+          <h2
+            id="low-stock-total"
+            class="text-3xl font-bold mt-2 text-yellow-500"
+          >
+            0
+          </h2>
+        </div>
+
+        <div class="bg-yellow-100 p-3 rounded-lg">
+          <i data-lucide="alert-triangle" class="text-yellow-600"> </i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty Stock -->
+
+    <div class="bg-white rounded-xl border shadow-sm p-5">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm text-gray-500">Stok Habis</p>
+
+          <h2
+            id="empty-stock-total"
+            class="text-3xl font-bold mt-2 text-red-600"
+          >
+            0
+          </h2>
+        </div>
+
+        <div class="bg-red-100 p-3 rounded-lg">
+          <i data-lucide="package-x" class="text-red-600"> </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT STOCK LIST -->
+
+  <div>
+    <h2 class="font-semibold text-gray-800 mb-4">Daftar Stok Menu</h2>
+
+    <div
+      id="stock-product-list"
+      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"
+    >
+      <!-- DATA PRODUCT AKAN DI RENDER JS -->
+    </div>
+  </div>
+</div>

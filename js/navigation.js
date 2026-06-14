@@ -24,9 +24,7 @@ function navigateTo(page) {
   }
 
   if (page === "customer-menu") {
-    document
-      .getElementById("page-customer-menu")
-      ?.classList.remove("hidden");
+    document.getElementById("page-customer-menu")?.classList.remove("hidden");
     renderCustomerProducts();
     renderCustomerCart();
     const displayNameEl = document.getElementById("customer-display-name");
@@ -62,37 +60,105 @@ function switchView(view) {
     ?.classList.toggle("hidden", view !== "products");
 
   document
+    .getElementById("view-stock")
+    ?.classList.toggle("hidden", view !== "stock");
+
+  document
     .getElementById("view-reports")
     ?.classList.toggle("hidden", view !== "reports");
 
   const navProducts = document.getElementById("nav-products");
+
   const navReports = document.getElementById("nav-reports");
 
-  navProducts?.classList.remove(
-    "bg-crimson-dark",
-    "text-white"
-  );
+  navProducts?.classList.remove("bg-crimson-dark", "text-white");
 
-  navReports?.classList.remove(
-    "bg-crimson-dark",
-    "text-white"
-  );
+  navReports?.classList.remove("bg-crimson-dark", "text-white");
 
-  if (view === "products") {
-    navProducts?.classList.add(
-      "bg-crimson-dark",
-      "text-white"
-    );
+  if (view === "stock") {
+    renderStock();
+
+    updateBreadcrumb(["Products", "Stock"]);
   }
 
-  if (view === "reports") {
-    navReports?.classList.add(
-      "bg-crimson-dark",
-      "text-white"
-    );
+  switch (view) {
+    case "products":
+      navProducts?.classList.add("bg-crimson-dark", "text-white");
+
+      updateBreadcrumb(["Products"]);
+
+      break;
+
+    case "reports":
+      navReports?.classList.add("bg-crimson-dark", "text-white");
+
+      updateBreadcrumb(["Reports"]);
+
+      break;
+
+    case "stock":
+      updateBreadcrumb(["Products", "Stock"]);
+
+      break;
+
+    default:
+      updateBreadcrumb([]);
   }
 
   if (window.innerWidth < 768) {
     toggleLeftSidebar();
   }
+}
+
+function updateBreadcrumb(items = []) {
+  const breadcrumb = document.getElementById("breadcrumb");
+
+  if (!breadcrumb) return;
+
+  let html = `
+
+    <li class="flex items-center">
+
+      <button 
+        onclick="switchView('products')"
+        class="flex items-center text-sm font-medium text-gray-500 hover:text-crimson">
+
+        <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+
+        Home
+
+      </button>
+
+    </li>
+
+  `;
+
+  items.forEach((item, index) => {
+    html += `
+
+      <li class="flex items-center">
+
+        <i data-lucide="chevron-right"
+        class="w-4 h-4 mx-2 text-gray-400">
+        </i>
+
+
+        ${
+          index === items.length - 1
+            ? `<span class="text-sm font-semibold text-gray-700">
+            ${item}
+          </span>`
+            : `<span class="text-sm text-gray-500">
+            ${item}
+          </span>`
+        }
+
+      </li>
+
+    `;
+  });
+
+  breadcrumb.innerHTML = html;
+
+  lucide.createIcons();
 }

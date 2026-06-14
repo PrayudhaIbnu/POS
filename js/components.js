@@ -13,49 +13,29 @@ async function loadComponents() {
   await Promise.all([
     loadComponent("login-component", "./components/login.html"),
 
-    loadComponent(
-      "customer-menu-component",
-      "./components/customer-menu.html"
-    ),
+    loadComponent("customer-menu-component", "./components/customer-menu.html"),
 
-    loadComponent(
-      "sidebar-component",
-      "./components/cashier-sidebar.html"
-    ),
+    loadComponent("sidebar-component", "./components/cashier-sidebar.html"),
 
-    loadComponent(
-      "product-grid-component",
-      "./components/product-grid.html"
-    ),
+    loadComponent("product-grid-component", "./components/product-grid.html"),
 
-    loadComponent(
-      "customer-cart-component",
-      "./components/customer-cart.html"
-    ),
+    loadComponent("stock-component", "components/stock.html"),
 
-    loadComponent(
-      "reports-component",
-      "./components/reports.html"
-    ),
+    loadComponent("customer-cart-component", "./components/customer-cart.html"),
 
-    loadComponent(
-      "payment-modal-component",
-      "./components/payment-modal.html"
-    ),
+    loadComponent("reports-component", "./components/reports.html"),
 
-    loadComponent(
-      "receipt-modal-component",
-      "./components/receipt-modal.html"
-    ),
+    loadComponent("stock-modal-box", "./components/stock-modal.html"),
+
+    loadComponent("payment-modal-component", "./components/payment-modal.html"),
+
+    loadComponent("receipt-modal-component", "./components/receipt-modal.html"),
 
     loadComponent(
       "product-detail-modal-component",
-      "./components/detail-modal.html"
+      "./components/detail-modal.html",
     ),
-    loadComponent(
-      "add-product-component",
-      "./components/add-product.html"
-    ),
+    loadComponent("add-product-component", "./components/add-product.html"),
   ]);
 }
 
