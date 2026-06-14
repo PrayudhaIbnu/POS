@@ -1,8 +1,10 @@
 <div
   id="stock-modal-box"
-  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
->
-  <div class="bg-white rounded-xl p-6 w-full max-w-md">
+  onclick="closeStockModal()"
+  class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+  <div
+    onclick="event.stopPropagation()"
+    class="bg-white rounded-xl p-6 w-full max-w-md">
     <h2 class="text-xl font-bold">Tambah Stok</h2>
 
     <p id="stock-product-name" class="text-gray-500 mt-2"></p>
@@ -11,8 +13,7 @@
       id="stock-add-amount"
       type="number"
       placeholder="Jumlah stok"
-      class="w-full border rounded-lg px-4 py-3 mt-5"
-    />
+      class="w-full border rounded-lg px-4 py-3 mt-5" />
 
     <div class="flex gap-3 mt-5">
       <button onclick="closeStockModal()" class="flex-1 border rounded-lg py-2">
@@ -21,8 +22,7 @@
 
       <button
         onclick="saveStock()"
-        class="flex-1 bg-crimson text-white rounded-lg py-2"
-      >
+        class="flex-1 bg-crimson text-white rounded-lg py-2">
         Simpan
       </button>
     </div>

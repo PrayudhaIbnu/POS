@@ -25,7 +25,7 @@ async function loadComponents() {
 
     loadComponent("reports-component", "./components/reports.html"),
 
-    loadComponent("stock-modal-box", "./components/stock-modal.html"),
+    loadComponent("stock-modal-component", "./components/stock-modal.html"),
 
     loadComponent("payment-modal-component", "./components/payment-modal.html"),
 
@@ -36,6 +36,8 @@ async function loadComponents() {
       "./components/detail-modal.html",
     ),
     loadComponent("add-product-component", "./components/add-product.html"),
+
+    loadComponent("footer-component", "./components/footer.html"),
   ]);
 }
 
