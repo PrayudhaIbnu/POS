@@ -1,20 +1,31 @@
 async function initApp() {
-  await loadComponents();
+  try {
+    // Load semua component HTML dulu
+    await loadComponents();
 
-  loadProducts();
-  loadReports();
-  loadCart();
+    // Load data dari localStorage
+    loadProducts();
+    loadReports();
+    loadCart();
 
-  renderCustomerProducts();
-  renderCustomerCart();
+    // Render data
+    renderProducts();
+    renderCart();
+    renderReports();
 
-  navigateTo("login");
+    renderCustomerProducts();
+    renderCustomerCart();
 
-  renderProducts();
-  renderCart();
-  renderReports();
+    // Halaman awal
+    const page = window.location.hash.replace("#", "");
 
-  lucide.createIcons();
+    navigateTo(page || "login");
+
+    // Render icon terakhir
+    lucide.createIcons();
+  } catch (error) {
+    console.error("Gagal inisialisasi aplikasi:", error);
+  }
 }
 
 function toggleDropdown(id) {
@@ -22,5 +33,4 @@ function toggleDropdown(id) {
 
   menu.classList.toggle("hidden");
 }
-
 document.addEventListener("DOMContentLoaded", initApp);

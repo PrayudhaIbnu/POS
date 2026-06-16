@@ -10,6 +10,8 @@ const defaultConfig = {
 };
 
 function applyConfig(config) {
+  if (!document.body) return;
+
   document.body.style.backgroundColor =
     config.background_color || defaultConfig.background_color;
 
@@ -19,13 +21,25 @@ function applyConfig(config) {
   }
 
   const sidebarStoreName = document.getElementById("sidebar-store-name");
+
   if (sidebarStoreName) {
     sidebarStoreName.textContent =
       config.store_name || defaultConfig.store_name;
   }
 
   const font = config.font_family || defaultConfig.font_family;
+
   document.body.style.fontFamily = `${font}, DM Sans, sans-serif`;
+}
+
+function initConfig() {
+  applyConfig(defaultConfig);
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initConfig);
+} else {
+  initConfig();
 }
 
 if (window.elementSdk?.init) {
@@ -93,5 +107,4 @@ if (window.elementSdk?.init) {
   });
 } else {
   console.warn("Element SDK not found. Using default config.");
-  applyConfig(defaultConfig);
 }

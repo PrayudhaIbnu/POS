@@ -1,0 +1,125 @@
+<div
+  id="page-login-customer"
+  class="hidden min-h-screen bg-gradient-to-tr from-crimson-dark to-crimson flex items-center justify-center p-4"
+>
+  <div
+    class="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden"
+  >
+    <!-- Header -->
+    <div class="bg-crimson text-white p-8 border-4 border-white rounded-t-3xl text-center">
+      <div
+        class="w-20 h-20 mx-auto bg-white/20 rounded-2xl flex items-center justify-center mb-4"
+      >
+        <i
+          data-lucide="utensils-crossed"
+          style="width:40px;height:40px"
+        ></i>
+      </div>
+
+      <h1 class="text-3xl font-bold">
+        Seblak Mama Ica
+      </h1>
+
+      <p class="text-crimson-100 mt-2">
+        Customer Ordering System
+      </p>
+    </div>
+
+    <!-- Form -->
+    <div class="p-8">
+      <div class="text-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">
+          Data Customer
+        </h2>
+
+        <p class="text-gray-500 mt-2">
+          Isi data sebelum melakukan pemesanan
+        </p>
+      </div>
+
+      <form
+        onsubmit="
+          event.preventDefault();
+          startCustomerOrder();
+        "
+        class="space-y-4"
+      >
+        <!-- Nama -->
+        <div>
+          <label
+            class="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Nama Customer
+          </label>
+
+          <div class="relative">
+            <i
+              data-lucide="user"
+              class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              style="width:18px;height:18px"
+            ></i>
+
+            <input
+              id="customer-name"
+              type="text"
+              placeholder="Masukkan nama"
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pos-crimson focus:outline-none"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Meja / HP -->
+        <div>
+          <label
+            class="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Nomor Meja / Nomor HP
+          </label>
+
+          <div class="relative">
+            <i
+              data-lucide="hash"
+              class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              style="width:18px;height:18px"
+            ></i>
+
+            <input
+              id="customer-table"
+              type="text"
+              placeholder="Contoh: Meja 5 atau 08123456789"
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pos-crimson focus:outline-none"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="w-full bg-crimson hover:bg-crimson-dark text-white font-semibold py-3 rounded-xl transition"
+        >
+          Mulai Pesan
+        </button>
+      </form>
+
+      <!-- Divider -->
+      <div class="my-6 flex items-center">
+        <div class="flex-1 border-t"></div>
+        <span class="px-4 text-sm text-gray-400">
+          atau
+        </span>
+        <div class="flex-1 border-t"></div>
+      </div>
+
+      <!-- Back -->
+      <button
+        onclick="navigateTo('login')"
+        class="w-full border border-gray-300 hover:bg-gray-50 text-gray-700 py-3 rounded-xl font-medium transition flex items-center justify-center gap-2"
+      >
+        <i data-lucide="arrow-left"></i>
+        Kembali ke Login Kasir
+      </button>
+    </div>
+  </div>
+</div>
