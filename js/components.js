@@ -1,56 +1,114 @@
 async function loadComponent(id, path) {
-  const res = await fetch(path);
-  const html = await res.text();
+  try {
+    const res = await fetch(path);
 
-  const target = document.getElementById(id);
+    console.log(id, path, res.status);
 
-  if (target) {
+    const html = await res.text();
+
+    const target = document.getElementById(id);
+
+    if (!target) {
+      console.error(`Container tidak ditemukan: ${id}`);
+      return;
+    }
+
     target.innerHTML = html;
+  } catch (err) {
+    console.error(`Gagal load ${path}`, err);
   }
 }
 
 async function loadComponents() {
-  await Promise.all([
-    loadComponent("login-component", "./components/login.html"),
+  try {
+    await Promise.all([
+      loadComponent(
+        "login-cashier-component",
+        "./components/login-cashier.html"
+      ),
 
-    loadComponent("customer-menu-component", "./components/customer-menu.html"),
+      loadComponent(
+        "login-customer-component",
+        "./components/login-customer.html"
+      ),
 
-    loadComponent("sidebar-component", "./components/cashier-sidebar.html"),
+      loadComponent(
+        "customer-menu-component",
+        "./components/customer-menu.html"
+      ),
 
-    loadComponent("product-grid-component", "./components/product-grid.html"),
+      loadComponent(
+        "sidebar-component",
+        "./components/cashier-sidebar.html"
+      ),
 
-    loadComponent("stock-component", "components/stock.html"),
+      loadComponent(
+        "product-grid-component",
+        "./components/product-grid.html"
+      ),
 
-    loadComponent("customer-cart-component", "./components/customer-cart.html"),
+      loadComponent(
+        "stock-component",
+        "./components/stock.html"
+      ),
 
-    loadComponent("reports-component", "./components/reports.html"),
+      loadComponent(
+        "customer-cart-component",
+        "./components/customer-cart.html"
+      ),
 
-    loadComponent("stock-modal-component", "./components/stock-modal.html"),
+      loadComponent(
+        "reports-component",
+        "./components/reports.html"
+      ),
 
-    loadComponent("payment-modal-component", "./components/payment-modal.html"),
+      loadComponent(
+        "stock-modal-component",
+        "./components/stock-modal.html"
+      ),
 
-    loadComponent("receipt-modal-component", "./components/receipt-modal.html"),
+      loadComponent(
+        "payment-modal-component",
+        "./components/payment-modal.html"
+      ),
 
-    loadComponent(
-      "product-detail-modal-component",
-      "./components/detail-modal.html",
-    ),
-    loadComponent("add-product-component", "./components/add-product.html"),
+      loadComponent(
+        "receipt-modal-component",
+        "./components/receipt-modal.html"
+      ),
 
-    loadComponent("footer-component", "./components/footer.html"),
-  ]);
-}
+      loadComponent(
+        "product-detail-modal-component",
+        "./components/detail-modal.html"
+      ),
 
-async function loadComponent(id, path) {
-  const res = await fetch(path);
-  const html = await res.text();
+      loadComponent(
+        "add-product-component",
+        "./components/add-product.html"
+      ),
 
-  const target = document.getElementById(id);
+      loadComponent(
+        "footer-component",
+        "./components/footer.html"
+      ),
+    ]);
 
-  if (!target) {
-    console.error(`Container tidak ditemukan: ${id}`);
-    return;
+    // Jalankan setelah semua component selesai dimuat
+    if (typeof applyConfig === "function") {
+      applyConfig(defaultConfig);
+    }
+
+    if (typeof lucide !== "undefined") {
+      lucide.createIcons();
+    }
+
+    console.log("✅ Semua component berhasil dimuat");
+  } catch (error) {
+    console.error("❌ Gagal memuat component:", error);
   }
-
-  target.innerHTML = html;
 }
+
+// Jalankan saat halaman siap
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadComponents();
+});
