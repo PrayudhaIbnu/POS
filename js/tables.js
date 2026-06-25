@@ -13,7 +13,7 @@ function loadTables() {
         name: "Meja 1",
         active: true,
         occupied: false,
-        qrUrl: "http://127.0.0.1:5500/#customer-login?table=A01",
+        qrUrl: "https://devserver-update-0-3-1--seblakmamaica.netlify.app/#customer-login?table=A01",
       },
       {
         id: 2,
@@ -21,7 +21,7 @@ function loadTables() {
         name: "Meja 2",
         active: true,
         occupied: false,
-        qrUrl: "http://127.0.0.1:5500/#customer-login?table=A02",
+        qrUrl: "https://devserver-update-0-3-1--seblakmamaica.netlify.app/#customer-login?table=A02",
       },
       {
         id: 3,
@@ -29,7 +29,7 @@ function loadTables() {
         name: "Meja 3",
         active: true,
         occupied: false,
-        qrUrl: "http://127.0.0.1:5500/#customer-login?table=A03",
+        qrUrl: "https://devserver-update-0-3-1--seblakmamaica.netlify.app/#customer-login?table=A03",
       },
       {
         id: 4,
@@ -37,7 +37,7 @@ function loadTables() {
         name: "Meja 4",
         active: true,
         occupied: false,
-        qrUrl: "http://127.0.0.1:5500/#customer-login?table=A04",
+        qrUrl: "https://devserver-update-0-3-1--seblakmamaica.netlify.app/#customer-login?table=A04",
       },
       {
         id: 5,
@@ -45,7 +45,7 @@ function loadTables() {
         name: "Meja 5",
         active: true,
         occupied: false,
-        qrUrl: "http://127.0.0.1:5500/#customer-login?table=A05",
+        qrUrl: "https://devserver-update-0-3-1--seblakmamaica.netlify.app/#customer-login?table=A05",
       },
     ];
     saveTablesData();
