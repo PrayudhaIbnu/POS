@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en" class="h-full">
   <head>
-    <script src="/_sdk/telemetry_sdk.js"></script>
+    <!-- HAPUS atau COMMENT script SDK yang tidak ada -->
+    <!-- <script src="/_sdk/telemetry_sdk.js"></script> -->
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,30 +15,34 @@
     <!-- Lucide -->
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
 
-    <!-- SDK -->
-    <script src="/_sdk/element_sdk.js"></script>
-    <script src="/_sdk/data_sdk.js"></script>
-
     <!-- Font -->
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet" />
 
-    <!-- App -->
-    <script src="js/components.js"></script>
+<!-- 1.STATE -->
+<script src="js/state.js"></script>
 
-    <script src="js/state.js"></script>
-    <script src="js/products.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/payment.js"></script>
-    <script src="js/customer.js"></script>
-    <script src="js/reports.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/stock.js"></script>
+<!-- 2. STORAGE & BROADCAST -->
+<script src="js/storage.js"></script>
+<script src="js/config.js"></script>
 
-    <script src="script.js"></script>
+<!-- 3. DATA & LOGIC -->
+<script src="js/components.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/tables.js"></script>
+<script src="js/products.js"></script>
+<script src="js/stock.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/payment.js"></script>
+<script src="js/customer.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/navigation.js"></script>
+
+<!-- 4. MAIN INIT -->
+<script src="script.js"></script>
+
     <script>
       tailwind.config = {
         theme: {
@@ -88,7 +93,7 @@
                 <ol id="breadcrumb" class="inline-flex items-center space-x-2">
                   <li class="flex items-center">
                     <button
-                      onclick="switchView('products')"
+                      onclick="switchView('dashboard')"
                       class="flex items-center text-sm font-medium text-gray-500 hover:text-crimson">
                       <i data-lucide="home" class="w-4 h-4 mr-2"></i>
                       Home
@@ -97,11 +102,19 @@
                 </ol>
               </nav>
 
+              <div id="dashboard-component"></div>
+
               <div id="product-grid-component"></div>
 
               <div id="reports-component"></div>
 
               <div id="stock-component"></div>
+
+              <div id="orders-component"></div>
+
+              <div id="tables-component"></div>
+
+              <div id="table-modal-component"></div>
             </main>
 
             <!-- Sticky Footer -->

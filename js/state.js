@@ -1,18 +1,13 @@
-let currentPage = "login";
-let currentRole = null;
-let activeView = "products";
-let selectedCategory = "All";
-
-let currentPaymentMethod = "Cash";
-
-let cashierCart = [];
-let customerCart = [];
-
-let reports = [];
-
-let customerName = "";
-let customerContact = "";
-
-let customerOrders = [];
-
-let activeProductForModal = null;
+// state.js
+var currentPage = "login";
+var currentRole = null;
+var activeView = "products";
+var selectedCategory = "All";
+var currentPaymentMethod = "Cash";
+var cashierCart = [];
+var customerCart = [];
+var reports = [];
+var customerName = "";
+var customerContact = "";
+var customerOrders = [];
+var activeProductForModal = null;

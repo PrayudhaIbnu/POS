@@ -24,73 +24,60 @@ async function loadComponents() {
     await Promise.all([
       loadComponent(
         "login-cashier-component",
-        "./components/login-cashier.html"
+        "./components/login-cashier.html",
       ),
 
       loadComponent(
         "login-customer-component",
-        "./components/login-customer.html"
+        "./components/login-customer.html",
       ),
 
       loadComponent(
         "customer-menu-component",
-        "./components/customer-menu.html"
+        "./components/customer-menu.html",
       ),
 
-      loadComponent(
-        "sidebar-component",
-        "./components/cashier-sidebar.html"
-      ),
+      loadComponent("dashboard-component", "/components/dashboard.html"),
 
-      loadComponent(
-        "product-grid-component",
-        "./components/product-grid.html"
-      ),
+      loadComponent("sidebar-component", "./components/cashier-sidebar.html"),
 
-      loadComponent(
-        "stock-component",
-        "./components/stock.html"
-      ),
+      loadComponent("product-grid-component", "./components/product-grid.html"),
+
+      loadComponent("orders-component", "./components/orders.html"),
+
+      loadComponent("tables-component", "./components/tables.html"),
+
+      loadComponent("table-modal-component", "./components/table-modal.html"),
+
+      loadComponent("stock-component", "./components/stock.html"),
 
       loadComponent(
         "customer-cart-component",
-        "./components/customer-cart.html"
+        "./components/customer-cart.html",
       ),
 
-      loadComponent(
-        "reports-component",
-        "./components/reports.html"
-      ),
+      loadComponent("reports-component", "./components/reports.html"),
 
-      loadComponent(
-        "stock-modal-component",
-        "./components/stock-modal.html"
-      ),
+      loadComponent("stock-modal-component", "./components/stock-modal.html"),
 
       loadComponent(
         "payment-modal-component",
-        "./components/payment-modal.html"
+        "./components/payment-modal.html",
       ),
 
       loadComponent(
         "receipt-modal-component",
-        "./components/receipt-modal.html"
+        "./components/receipt-modal.html",
       ),
 
       loadComponent(
         "product-detail-modal-component",
-        "./components/detail-modal.html"
+        "./components/detail-modal.html",
       ),
 
-      loadComponent(
-        "add-product-component",
-        "./components/add-product.html"
-      ),
+      loadComponent("add-product-component", "./components/add-product.html"),
 
-      loadComponent(
-        "footer-component",
-        "./components/footer.html"
-      ),
+      loadComponent("footer-component", "./components/footer.html"),
     ]);
 
     // Jalankan setelah semua component selesai dimuat

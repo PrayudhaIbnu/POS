@@ -5,7 +5,7 @@ let products = [
     name: "Seblak komplit",
     price: 18000,
     cat: "Food",
-    stock: 0,
+    stock: 20,
     details:
       "Dengan isian: telur, sosis, bakso, kerupuk, sayuran, dumpling keju/ayam, chikuwa, mie/kwetiau, ceker, cuanki lidah, dan siomay kering.",
     variants: [
@@ -23,7 +23,7 @@ let products = [
     name: "Seblak hemat",
     price: 10000,
     cat: "Food",
-    stock: 0,
+    stock: 20,
     details:
       "Dengan isian hemat pilihan dasar: telur, sosis, bakso, makaroni, kerupuk basah, kuah rempah kencur pedas gurih.",
     variants: [
@@ -41,7 +41,7 @@ let products = [
     name: "Seblak seafood",
     price: 15000,
     cat: "Food",
-    stock: 0,
+    stock: 20,
     details:
       "Dengan kombinasi isian seafood: udang, potongan cumi, fish cake, kerupuk, dumpling keju, chikuwa, sayur, kuah gurih pedas.",
     variants: [
@@ -59,7 +59,7 @@ let products = [
     name: "Mie jebew komplit/pedas",
     price: 15000,
     cat: "Food",
-    stock: 0,
+    stock: 20,
     details:
       "Mie jebew super pedas beraroma minyak cabai khas, dengan topping lengkap bakso, sosis, pangsit basah, cuanki lidah, taburan ayam.",
     variants: [
@@ -76,7 +76,7 @@ let products = [
     name: "Mie jebew original",
     price: 10000,
     cat: "Food",
-    stock: 0,
+    stock: 20,
     details:
       "Mie jebew dengan racikan chili oil dan kecap asin pedas manis original tanpa tambahan topping berlebih.",
     variants: [
@@ -93,7 +93,7 @@ let products = [
     name: "Cireng isi (5pcs)",
     price: 2000,
     cat: "Snack",
-    stock: 0,
+    stock: 20,
     details:
       "Cireng goreng gurih renyah dengan isian ayam suwir pedas / sosis mercon di dalamnya.",
     images:
@@ -104,7 +104,7 @@ let products = [
     name: "Risol (1pcs)",
     price: 3000,
     cat: "Snack",
-    stock: 0,
+    stock: 20,
     details:
       "Risol premium renyah isi mayo gurih kental, smoked beef slices, dan potongan telur rebus.",
     images:
@@ -115,7 +115,7 @@ let products = [
     name: "Tempura",
     price: 1000,
     cat: "Snack",
-    stock: 0,
+    stock: 20,
     details:
       "Jajanan tempura ikan goreng tusuk yang disajikan hangat dengan siraman saus sambal encer.",
     images:
@@ -126,7 +126,7 @@ let products = [
     name: "Bakaran",
     price: 2000,
     cat: "Snack",
-    stock: 0,
+    stock: 20,
     details:
       "Sosis, bakso ikan, atau dumpling ayam bakar berlumur bumbu BBQ manis gurih pedas.",
     images:
@@ -137,7 +137,7 @@ let products = [
     name: "Donat",
     price: 2500,
     cat: "Snack",
-    stock: 0,
+    stock: 20,
     details:
       "Donat kentang jadul yang empuk dan lembut dengan taburan gula halus putih melimpah.",
     images:
@@ -148,7 +148,7 @@ let products = [
     name: "Es teh",
     price: 3000,
     cat: "Beverage",
-    stock: 0,
+    stock: 20,
     details:
       "Seduhan teh manis tradisional wangi melati yang disajikan dingin segar dengan es batu.",
     images:
@@ -159,7 +159,7 @@ let products = [
     name: "Nutrisari",
     price: 5000,
     cat: "Beverage",
-    stock: 0,
+    stock: 20,
     details:
       "Minuman buah serbuk jeruk manis dingin instan kaya akan vitamin C penyegar dahaga.",
     images:
@@ -170,7 +170,7 @@ let products = [
     name: "Air mineral",
     price: 4000,
     cat: "Beverage",
-    stock: 0,
+    stock: 20,
     details:
       "Air minum dalam kemasan botol dingin ukuran ukuran standar 600ml.",
     images:

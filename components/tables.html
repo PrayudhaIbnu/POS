@@ -1,0 +1,61 @@
+<!-- VIEW TABLES -->
+<div id="view-tables" class="hidden space-y-5">
+
+  <!-- Header -->
+  <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+    <div>
+      <h2 class="text-2xl font-bold text-gray-800">
+        Manajemen Meja
+      </h2>
+      <p class="text-sm text-gray-500 mt-1">
+        Kelola meja restoran dan status penggunaannya
+      </p>
+    </div>
+
+    <div class="flex gap-2">
+      <!-- ✅ TOMBOL REFRESH -->
+      <button
+        onclick="renderTables()"
+        class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-3 rounded-xl font-medium flex items-center gap-2 transition">
+        <i data-lucide="refresh-cw"></i>
+        Refresh
+      </button>
+      
+      <button
+        onclick="openTableModal()"
+        class="bg-crimson hover:bg-crimson-dark text-white px-5 py-3 rounded-xl font-medium flex items-center gap-2 transition">
+        <i data-lucide="plus"></i>
+        Tambah Meja
+      </button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-white rounded-xl border p-4">
+      <p class="text-sm text-gray-500">Total Meja</p>
+      <h3 id="total-tables" class="text-3xl font-bold mt-2">0</h3>
+    </div>
+
+    <div class="bg-white rounded-xl border p-4">
+      <p class="text-sm text-gray-500">Meja Kosong</p>
+      <h3 id="available-tables" class="text-3xl font-bold text-green-600 mt-2">
+        0
+      </h3>
+    </div>
+
+    <div class="bg-white rounded-xl border p-4">
+      <p class="text-sm text-gray-500">Meja Terisi</p>
+      <h3 id="occupied-tables" class="text-3xl font-bold text-red-500 mt-2">
+        0
+      </h3>
+    </div>
+  </div>
+
+  <!-- Table Grid -->
+  <div
+    id="table-grid"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+  </div>
+
+</div>

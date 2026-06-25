@@ -3,23 +3,28 @@ async function initApp() {
     // Load semua component HTML dulu
     await loadComponents();
 
-    // Load data dari localStorage
-    loadProducts();
-    loadReports();
-    loadCart();
+    loadAllData();
+    loadTables();
+    loadOrders();
 
     // Render data
     renderProducts();
     renderCart();
     renderReports();
-
+    renderTables();
     renderCustomerProducts();
     renderCustomerCart();
 
-    // Halaman awal
-    const page = window.location.hash.replace("#", "");
+    // Render orders jika fungsi ada
+    if (typeof renderOrders === "function") {
+      renderOrders();
+    }
 
-    navigateTo(page || "login");
+    // Halaman awal
+    const hash = window.location.hash.replace("#", "");
+    const [page, queryString] = hash.split("?");
+
+    navigateTo(page || "login", queryString || "");
 
     // Render icon terakhir
     lucide.createIcons();
@@ -30,7 +35,7 @@ async function initApp() {
 
 function toggleDropdown(id) {
   const menu = document.getElementById(id);
-
   menu.classList.toggle("hidden");
 }
+
 document.addEventListener("DOMContentLoaded", initApp);

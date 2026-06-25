@@ -1,0 +1,56 @@
+<div
+  id="table-modal"
+  class="hidden fixed inset-0 z-[100] bg-black/50 flex items-center justify-center p-4">
+
+  <div class="bg-white rounded-2xl w-full max-w-md p-6">
+    <div class="flex justify-between items-center mb-5">
+      <h3 class="text-xl font-bold">
+        Tambah Meja
+      </h3>
+      <button onclick="closeTableModal()" class="hover:bg-gray-100 p-2 rounded-lg transition">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <div class="space-y-4">
+      <div>
+        <label class="block mb-2 text-sm font-medium">
+          Nama Meja
+        </label>
+        <input
+          id="table-name"
+          type="text"
+          placeholder="Contoh: Meja 1"
+          class="w-full border rounded-xl px-4 py-3 focus:ring-2 focus:ring-crimson focus:outline-none">
+      </div>
+
+      <div>
+        <label class="block mb-2 text-sm font-medium">
+          Kode Meja
+        </label>
+        <input
+          id="table-code"
+          type="text"
+          placeholder="Contoh: A01"
+          class="w-full border rounded-xl px-4 py-3 focus:ring-2 focus:ring-crimson focus:outline-none">
+      </div>
+
+      <!-- QR Code Preview -->
+      <div id="qr-preview" class="hidden">
+        <label class="block mb-2 text-sm font-medium">
+          Preview QR Code
+        </label>
+        <div class="border rounded-xl p-4 flex flex-col items-center">
+          <div id="qr-code-container" class="bg-white p-2"></div>
+          <p class="text-xs text-gray-500 mt-2 text-center break-all" id="qr-url-display"></p>
+        </div>
+      </div>
+
+      <button
+        onclick="saveTable()"
+        class="w-full bg-pos-green hover:bg-pos-green-hover text-white py-3 rounded-xl font-medium transition">
+        Simpan
+      </button>
+    </div>
+  </div>
+</div>

@@ -3,24 +3,20 @@
   <div
     id="sidebar-overlay"
     onclick="toggleLeftSidebar()"
-    class="hidden fixed inset-0 bg-black/40 z-40 md:hidden"
-  ></div>
+    class="hidden fixed inset-0 bg-black/40 z-40 md:hidden"></div>
 
   <!-- Sidebar -->
   <aside
     id="main-sidebar"
-    class="fixed md:relative inset-y-0 left-0 z-50 w-72 sm:w-64 bg-crimson bg-white text-white flex flex-col transform -translate-x-full md:translate-x-0 transition-all duration-300 shadow-xl md:shadow-none"
-  >
+    class="fixed md:relative inset-y-0 left-0 z-50 w-72 sm:w-64 bg-crimson bg-white text-white flex flex-col transform -translate-x-full md:translate-x-0 transition-all duration-300 shadow-xl md:shadow-none">
     <!-- Header -->
     <div
-      class="px-5 py-4 border-b border-white/10 flex items-center justify-between"
-    >
+      class="px-5 py-4 border-b border-white/10 flex items-center justify-between">
       <div>
         <h2
           id="sidebar-store-name"
           class="text-lg font-bold"
-          class="text-xl font-bold tracking-tight"
-        >
+          class="text-xl font-bold tracking-tight">
           Seblak Mama Ica
         </h2>
         <p class="text-sm text-red-200 mt-1">Cashier Panel</p>
@@ -28,20 +24,25 @@
 
       <button
         onclick="toggleLeftSidebar()"
-        class="md:hidden p-1 rounded-lg bg-crimson-dark text-red-100 hover:text-white"
-      >
+        class="md:hidden p-1 rounded-lg bg-crimson-dark text-red-100 hover:text-white">
         <i data-lucide="x" style="width: 20px; height: 20px"></i>
       </button>
     </div>
 
     <!-- Navigation -->
     <nav class="flex-1 p-3 space-y-1">
+      <button
+        onclick="switchView('dashboard')"
+        id="nav-dashboard"
+        class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition">
+        <i data-lucide="layout-dashboard" style="width: 20px; height: 20px"></i>
+        <span class="font-medium">Dashboard</span>
+      </button>
       <!-- Products Dropdown -->
       <div class="w-full">
         <button
           onclick="toggleDropdown('products-menu')"
-          class="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg bg-crimson-dark text-white transition"
-        >
+          class="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg bg-crimson-dark text-white transition">
           <div class="flex items-center gap-3">
             <i data-lucide="layout-grid" style="width: 20px; height: 20px"></i>
 
@@ -51,8 +52,7 @@
           <i
             data-lucide="chevron-down"
             id="products-arrow"
-            style="width: 18px; height: 18px"
-          >
+            style="width: 20px; height: 20px">
           </i>
         </button>
 
@@ -60,9 +60,8 @@
         <div id="products-menu" class="hidden mt-2 ml-4 space-y-2">
           <button
             onclick="switchView('stock')"
-            class="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-crimson-dark transition text-gray-100"
-          >
-            <i data-lucide="package" style="width: 18px; height: 18px"></i>
+            class="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-crimson-dark transition text-gray-100">
+            <i data-lucide="package" style="width: 20px; height: 20px"></i>
 
             <span> Stok </span>
           </button>
@@ -70,10 +69,31 @@
       </div>
 
       <button
+        onclick="switchView('orders')"
+        id="nav-orders"
+        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-100 hover:bg-crimson-dark transition">
+        <i data-lucide="clipboard-list" style="width: 20px; height: 20px"></i>
+        <span class="font-medium">Pesanan</span>
+        <span
+          id="order-badge"
+          class="ml-auto bg-crimson text-white text-xs font-bold px-2 py-1 rounded-full hidden"
+          >0</span
+        >
+      </button>
+
+      <button
+        id="nav-tables"
+        onclick="switchView('tables')"
+        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-100 hover:bg-crimson-dark transition">
+        <i data-lucide="table-2"></i>
+
+        <span class="font-medium"> Meja </span>
+      </button>
+
+      <button
         id="nav-reports"
         onclick="switchView('reports')"
-        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-100 hover:bg-crimson-dark transition"
-      >
+        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-100 hover:bg-crimson-dark transition">
         <i data-lucide="bar-chart-3" style="width: 20px; height: 20px"></i>
 
         <span class="font-medium"> Laporan Penjualan </span>
@@ -98,9 +118,8 @@
     <div class="p-4 border-t border-crimson-dark">
       <button
         onclick="navigateTo('login')"
-        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-crimson-dark transition"
-      >
-        <i data-lucide="log-out" style="width: 18px; height: 18px"></i>
+        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-crimson-dark transition">
+        <i data-lucide="log-out" style="width: 20px; height: 20px"></i>
 
         <span> Logout </span>
       </button>
@@ -114,8 +133,7 @@
       <div class="flex items-center gap-3">
         <button
           onclick="toggleLeftSidebar()"
-          class="p-2 rounded-xl hover:bg-gray-100 transition"
-        >
+          class="p-2 rounded-xl hover:bg-gray-100 transition">
           <i data-lucide="menu" class="w-5 h-5"></i>
         </button>
 
