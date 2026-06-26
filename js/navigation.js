@@ -1,14 +1,14 @@
 function navigateTo(page, queryString = "") {
   window.location.hash = queryString ? `${page}?${queryString}` : page;
   hideAllPages();
-
+  
   const params = new URLSearchParams(queryString);
-
+  
   switch (page) {
     case "login":
       showPage("page-login-cashier");
       break;
-
+      
     case "customer-login":
       showPage("page-login-customer");
       const tableParam = params.get("table");
@@ -26,8 +26,7 @@ function navigateTo(page, queryString = "") {
       renderProducts();
       renderCart();
       renderReports();
-      loadOrders();
-      switchView("dashboard"); 
+      switchView("products");
       break;
 
     case "customer-menu":
@@ -35,6 +34,12 @@ function navigateTo(page, queryString = "") {
       renderCustomerProducts();
       renderCustomerCart();
       updateCustomerDisplay();
+      updateStatusBadge(); // ✅ Update badge status
+      break;
+
+    case "customer-status": // ✅ CASE BARU
+      showPage("page-customer-status");
+      renderCustomerStatus();
       break;
 
     case "add-product":
@@ -45,6 +50,62 @@ function navigateTo(page, queryString = "") {
       console.warn(`Page "${page}" tidak ditemukan`);
   }
   lucide.createIcons();
+}
+
+function hideAllPages() {
+  const pages = [
+    "page-dashboard",
+    "page-customer-menu",
+    "page-customer-status", // ✅ Tambah
+    "page-add-product",
+    "page-login-cashier",
+    "page-login-customer",
+  ];
+  pages.forEach((id) => {
+    document.getElementById(id)?.classList.add("hidden");
+  });
+}
+
+// ✅ Fungsi untuk update badge status di customer-menu
+function updateStatusBadge() {
+  const badge = document.getElementById('status-badge');
+  if (!badge) return;
+  
+  const myOrders = customerOrders.filter(order => 
+    order.customer === customerName && 
+    order.table === customerContact &&
+    (order.status === 'Menunggu Diproses' || order.status === 'Sedang Diproses')
+  );
+  
+  if (myOrders.length > 0) {
+    badge.textContent = myOrders.length;
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+}
+
+function setActiveNav(viewName) {
+  // Hapus active dari semua nav-item
+  document.querySelectorAll(".nav-item").forEach((item) => {
+    item.classList.remove("active");
+  });
+
+  // Set active pada tombol yang sesuai
+  const navMap = {
+    dashboard: "nav-dashboard",
+    products: "nav-products",
+    stock: "nav-stock",
+    orders: "nav-orders",
+    tables: "nav-tables",
+    reports: "nav-reports",
+  };
+
+  const activeId = navMap[viewName];
+  if (activeId) {
+    const activeEl = document.getElementById(activeId);
+    if (activeEl) activeEl.classList.add("active");
+  }
 }
 
 function switchView(view) {
@@ -59,6 +120,9 @@ function switchView(view) {
   document
     .getElementById("view-tables")
     ?.classList.toggle("hidden", view !== "tables");
+
+  // Set active state di sidebar
+  setActiveNav(view);
 
   const navProducts = document.getElementById("nav-products");
   const navReports = document.getElementById("nav-reports");

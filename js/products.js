@@ -235,16 +235,6 @@ function filterProducts() {
       <p class="text-gray-400 text-[10px] line-clamp-2 mt-0.5 min-h-[30px]">
         ${p.details || "Tidak ada rincian deskripsi item."}
       </p>
-
-      <p class="mt-1 text-xs ${
-        p.stock <= 0
-          ? "text-red-500 font-semibold"
-          : p.stock <= 10
-            ? "text-yellow-500 font-semibold"
-            : "text-green-600"
-      }">
-        Stok: ${p.stock ?? 0}
-      </p>
     </div>
   </div>
 

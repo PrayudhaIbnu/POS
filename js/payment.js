@@ -167,10 +167,7 @@ function confirmPayment() {
 
   const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
   const tenderedInput = document.getElementById("tendered");
-  const tendered =
-    currentPaymentMethod === "QRIS"
-      ? total
-      : parseInt(tenderedInput?.value) || 0;
+  const tendered = currentPaymentMethod === "QRIS" ? total : (parseInt(tenderedInput?.value) || 0);
 
   if (currentPaymentMethod === "Cash" && tendered < total) {
     alert("Uang pembayaran kurang dari total tagihan!");
@@ -187,20 +184,16 @@ function confirmPayment() {
       hour: "2-digit",
       minute: "2-digit",
     });
-  const storeName =
-    document.getElementById("sidebar-store-name")?.textContent ||
-    "Seblak Mama Ica";
+  const storeName = document.getElementById("sidebar-store-name")?.textContent || "Seblak Mama Ica";
 
+  // Isi receipt modal
   document.getElementById("receipt-store-name").textContent = storeName;
   document.getElementById("receipt-id").textContent = "#" + trxId;
   document.getElementById("receipt-date").textContent = dateStr;
   document.getElementById("receipt-method").textContent = currentPaymentMethod;
-  document.getElementById("receipt-total").textContent =
-    "Rp " + total.toLocaleString();
-  document.getElementById("receipt-tendered").textContent =
-    "Rp " + tendered.toLocaleString();
-  document.getElementById("receipt-change").textContent =
-    "Rp " + change.toLocaleString();
+  document.getElementById("receipt-total").textContent = "Rp " + total.toLocaleString();
+  document.getElementById("receipt-tendered").textContent = "Rp " + tendered.toLocaleString();
+  document.getElementById("receipt-change").textContent = "Rp " + change.toLocaleString();
 
   const receiptItemsContainer = document.getElementById("receipt-items");
   receiptItemsContainer.innerHTML = cart
@@ -218,12 +211,17 @@ function confirmPayment() {
     )
     .join("");
 
+  // ✅ PERBAIKAN: Simpan items ke dalam report
   reports.push({
     id: trxId,
     time: dateStr,
     method: currentPaymentMethod,
     total: total,
+    items: [...cart], // ✅ TAMBAHKAN INI
+    timestamp: Date.now(), // ✅ TAMBAHKAN untuk filter tanggal
   });
+
+  console.log("REPORT MASUK:", reports);
 
   cart.forEach((item) => {
     const product = products.find((p) => p.id === item.id);
@@ -242,17 +240,17 @@ function confirmPayment() {
 
   if (currentRole === "customer") {
     submitCustomerOrder();
-
-    // Update status meja menjadi terisi
+    
+    // Update status meja
     if (customerContact) {
-      const table = tables.find((t) => t.code === customerContact);
+      const table = tables.find(t => t.code === customerContact);
       if (table) {
         table.occupied = true;
         saveTablesData();
         if (typeof renderTables === "function") renderTables();
       }
     }
-
+    
     customerCart = [];
     renderCustomerCart();
   } else {
@@ -260,14 +258,12 @@ function confirmPayment() {
     renderCart();
   }
 
-  saveProducts();
-  broadcastUpdate("products_updated"); 
-
-  saveReports();
-  broadcastUpdate("reports_updated");
-
   saveCart();
-  broadcastUpdate("cart_updated"); 
+  
+  // Broadcast ke tab lain
+  if (typeof broadcastUpdate === "function") {
+    broadcastUpdate("reports_updated");
+  }
 }
 
 function closeReceipt() {

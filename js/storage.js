@@ -67,6 +67,7 @@ const appChannel = new BroadcastChannel("pos_app_channel");
 
 appChannel.onmessage = (event) => {
   const { type } = event.data;
+  
   switch (type) {
     case "products_updated":
       loadProducts();
@@ -74,22 +75,28 @@ appChannel.onmessage = (event) => {
       if (typeof renderCustomerProducts === "function") renderCustomerProducts();
       if (typeof renderStock === "function") renderStock();
       break;
+      
     case "cart_updated":
       loadCart();
       if (typeof renderCart === "function") renderCart();
       if (typeof renderCustomerCart === "function") renderCustomerCart();
       break;
+      
     case "reports_updated":
       loadReports();
       if (typeof renderReports === "function") renderReports();
       break;
+      
     case "tables_updated":
       loadTables();
       if (typeof renderTables === "function") renderTables();
       break;
-    case "orders_updated":
+      
+    case "orders_updated": // ✅ TAMBAHKAN INI
       loadOrders();
       if (typeof renderOrders === "function") renderOrders();
+      if (typeof renderCustomerStatus === "function") renderCustomerStatus();
+      if (typeof updateStatusBadge === "function") updateStatusBadge();
       break;
   }
 };

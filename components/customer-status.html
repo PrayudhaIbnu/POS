@@ -1,0 +1,115 @@
+<!-- VIEW CUSTOMER STATUS -->
+<div id="page-customer-status" class="hidden min-h-screen bg-gray-100 flex flex-col">
+
+  <!-- HEADER -->
+  <div class="bg-gradient-to-r from-crimson to-crimson-dark text-white sticky top-0 z-20 shadow-lg">
+    <div class="max-w-3xl mx-auto px-4 py-5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <button
+            onclick="navigateTo('customer-menu')"
+            class="w-10 h-10 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition">
+            <i data-lucide="arrow-left" style="width:20px;height:20px"></i>
+          </button>
+          <div>
+            <h1 class="text-xl font-bold">Status Pesanan</h1>
+            <p class="text-sm text-white/80">Pantau pesananmu secara real-time</p>
+          </div>
+        </div>
+
+        <button
+          onclick="renderCustomerStatus()"
+          class="w-10 h-10 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition"
+          title="Refresh">
+          <i data-lucide="refresh-cw" style="width:18px;height:18px"></i>
+        </button>
+      </div>
+
+      <!-- Customer Info -->
+      <div class="mt-4 flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-3">
+        <div class="w-11 h-11 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+          <i data-lucide="user" style="width:20px;height:20px"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-semibold truncate" id="status-customer-name">Customer</p>
+          <p class="text-xs text-white/80 flex items-center gap-1">
+            <i data-lucide="hash" style="width:12px;height:12px"></i>
+            <span id="status-customer-table">-</span>
+          </p>
+        </div>
+        <div class="text-right">
+          <p class="text-xs text-white/70">Aktif</p>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            <span class="text-xs">Online</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="flex-1 max-w-3xl mx-auto w-full p-4 space-y-4">
+
+    <!-- ACTIVE ORDER SECTION -->
+    <div id="active-order-section">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-bold text-gray-800 flex items-center gap-2">
+          <i data-lucide="chef-hat" class="text-crimson" style="width:20px;height:20px"></i>
+          Pesanan Aktif
+        </h2>
+        <span id="active-order-count" class="text-xs text-gray-500">0 pesanan</span>
+      </div>
+
+      <div id="active-orders-list" class="space-y-4">
+        <!-- Will be rendered by JS -->
+      </div>
+    </div>
+
+    <!-- COMPLETED ORDERS SECTION -->
+    <div id="completed-order-section" class="hidden">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-bold text-gray-800 flex items-center gap-2">
+          <i data-lucide="check-circle" class="text-green-500" style="width:20px;height:20px"></i>
+          Riwayat Pesanan
+        </h2>
+      </div>
+
+      <div id="completed-orders-list" class="space-y-3">
+        <!-- Will be rendered by JS -->
+      </div>
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div id="status-empty-state" class="hidden bg-white rounded-2xl border p-12 text-center">
+      <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="inbox" class="text-gray-400" style="width:40px;height:40px"></i>
+      </div>
+      <h3 class="text-lg font-bold text-gray-800 mb-2">Belum Ada Pesanan</h3>
+      <p class="text-sm text-gray-500 mb-4">
+        Pesananmu akan muncul di sini setelah kamu checkout
+      </p>
+      <button
+        onclick="navigateTo('customer-menu')"
+        class="px-6 py-3 bg-crimson hover:bg-crimson-dark text-white rounded-xl font-semibold transition flex items-center gap-2 mx-auto">
+        <i data-lucide="shopping-bag" style="width:18px;height:18px"></i>
+        Pesan Sekarang
+      </button>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2 text-sm text-gray-500">
+        <i data-lucide="store" style="width:16px;height:16px"></i>
+        <span>Seblak Mama Ica POS</span>
+      </div>
+      <div class="text-xs text-gray-400">
+        Auto-refresh aktif
+      </div>
+    </div>
+  </footer>
+
+</div>

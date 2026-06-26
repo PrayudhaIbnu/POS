@@ -1,32 +1,30 @@
 async function initApp() {
   try {
-    // Load semua component HTML dulu
     await loadComponents();
 
-    loadAllData();
-    loadTables();
+    loadProducts();
+    loadReports();
+    loadCart();
     loadOrders();
+    loadCustomerSession();
 
-    // Render data
     renderProducts();
     renderCart();
     renderReports();
+    loadTables();
     renderTables();
+
     renderCustomerProducts();
     renderCustomerCart();
 
-    // Render orders jika fungsi ada
-    if (typeof renderOrders === "function") {
-      renderOrders();
+    if (typeof renderCategoryFilters === "function") {
+      renderCategoryFilters();
     }
 
-    // Halaman awal
     const hash = window.location.hash.replace("#", "");
     const [page, queryString] = hash.split("?");
-
     navigateTo(page || "login", queryString || "");
 
-    // Render icon terakhir
     lucide.createIcons();
   } catch (error) {
     console.error("Gagal inisialisasi aplikasi:", error);

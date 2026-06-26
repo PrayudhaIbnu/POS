@@ -1,6 +1,7 @@
 <div
   id="page-customer-menu"
-  class="hidden min-h-screen bg-gray-100 flex flex-col">
+  class="hidden min-h-screen bg-gray-100 flex flex-col"
+>
   <!-- HEADER -->
   <div class="bg-white border-b border-gray-200 sticky top-0 z-20">
     <div class="max-w-7xl mx-auto px-4 py-4">
@@ -16,10 +17,12 @@
               xmlns="http://www.w3.org/2000/svg"
               width="1.2em"
               height="1.2em"
-              viewBox="0 0 24 24">
+              viewBox="0 0 24 24"
+            >
               <path
                 fill="currentColor"
-                d="m6 20l2-5h3v-4.025Q7.175 10.85 4.587 9.85T2 7.5q0-1.45 2.925-2.475T12 4q4.175 0 7.088 1.025T22 7.5q0 1.35-2.588 2.35T13 10.975V15h3l2 5h-2l-1.2-3H9.2L8 20zm6-11q2.425 0 4.575-.425t3.15-1.075q-1-.65-3.15-1.075T12 6t-4.575.425T4.275 7.5q1 .65 3.15 1.075T12 9m0-1.5" />
+                d="m6 20l2-5h3v-4.025Q7.175 10.85 4.587 9.85T2 7.5q0-1.45 2.925-2.475T12 4q4.175 0 7.088 1.025T22 7.5q0 1.35-2.588 2.35T13 10.975V15h3l2 5h-2l-1.2-3H9.2L8 20zm6-11q2.425 0 4.575-.425t3.15-1.075q-1-.65-3.15-1.075T12 6t-4.575.425T4.275 7.5q1 .65 3.15 1.075T12 9m0-1.5"
+              />
             </svg>
             Meja:
             <span id="customer-table-display" class="font-semibold"></span>
@@ -28,25 +31,88 @@
           <p class="text-gray-500 text-sm">Pilih menu favoritmu hari ini</p>
         </div>
 
-        <button
-          onclick="clearCustomerSession(); navigateTo('customer-login')"
-          class="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition">
-          Keluar
-        </button>
+        <div class="flex flex-col gap-2">
+          <!-- ✅ TOMBOL LIHAT STATUS -->
+          <button
+            onclick="navigateTo('customer-status')"
+            class="relative px-4 py-2 rounded-xl bg-crimson hover:bg-crimson-dark text-white transition flex items-center gap-2"
+          >
+            <i
+              data-lucide="clipboard-list"
+              style="width: 18px; height: 18px"
+            ></i>
+            <span class="text-sm font-medium">Status</span>
+            <span
+              id="status-badge"
+              class="absolute -top-1 -right-1 w-5 h-5 bg-yellow-400 text-crimson text-xs font-bold rounded-full flex items-center justify-center hidden"
+            >
+              0
+            </span>
+          </button>
+
+          <button
+            onclick="
+              clearCustomerSession();
+              navigateTo('customer-login');
+            "
+            class="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition"
+          >
+            Keluar
+          </button>
+        </div>
       </div>
 
       <!-- Search -->
       <div class="relative mt-4">
         <i
           data-lucide="search"
-          class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5">
-        </i>
-
+          class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"
+        ></i>
         <input
           id="customer-search"
           type="text"
           placeholder="Cari menu..."
-          class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-crimson focus:outline-none" />
+          oninput="filterCustomerProducts()"
+          class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-crimson focus:outline-none"
+        />
+      </div>
+
+      <!-- Category Filter -->
+      <div class="mt-4 flex items-center gap-3">
+        <div class="flex items-center gap-1 text-gray-500">
+          <i data-lucide="filter" style="width: 16px; height: 16px"></i>
+          <span class="text-xs font-medium">Kategori:</span>
+        </div>
+
+        <div
+          id="category-filters"
+          class="flex gap-2 overflow-x-auto pb-1 flex-1"
+        >
+          <button
+            onclick="setCustomerCategoryFilter('All')"
+            class="cat-filter-btn whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-crimson text-white shadow-sm transition"
+          >
+            Semua
+          </button>
+          <button
+            onclick="setCustomerCategoryFilter('Food')"
+            class="cat-filter-btn whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 transition"
+          >
+            🍽️ Makanan
+          </button>
+          <button
+            onclick="setCustomerCategoryFilter('Beverage')"
+            class="cat-filter-btn whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 transition"
+          >
+            🥤 Minuman
+          </button>
+          <button
+            onclick="setCustomerCategoryFilter('Snack')"
+            class="cat-filter-btn whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 transition"
+          >
+            🍟 Snack
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -57,24 +123,51 @@
       <div class="grid lg:grid-cols-[1fr_360px] gap-6">
         <!-- PRODUCT -->
         <div>
+          <!-- Info Filter Aktif -->
+          <div
+            id="customer-filter-info"
+            class="hidden mb-3 flex items-center justify-between"
+          >
+            <p class="text-sm text-gray-500">
+              Menampilkan
+              <span
+                id="customer-product-count"
+                class="font-semibold text-gray-800"
+                >0</span
+              >
+              produk
+            </p>
+            <button
+              onclick="resetFilters()"
+              class="text-xs text-crimson hover:text-crimson-dark font-medium flex items-center gap-1"
+            >
+              <i data-lucide="x" style="width: 14px; height: 14px"></i>
+              Reset Filter
+            </button>
+          </div>
+
           <div
             id="customer-product-grid"
-            class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+            class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"
+          ></div>
         </div>
 
         <!-- CART -->
         <aside
-          class="bg-white rounded-2xl shadow-sm border border-gray-200 sticky top-24 h-fit">
+          class="bg-white rounded-2xl shadow-sm border border-gray-200 sticky top-24 h-fit"
+        >
           <div class="p-5 border-b">
             <h3
-              class="inline flex items-center gap-2 font-bold text-lg text-gray-800">
+              class="inline flex items-center gap-2 font-bold text-lg text-gray-800"
+            >
               <i data-lucide="shopping-cart"></i> Pesanan Saya
             </h3>
           </div>
 
           <div
             id="customer-cart-list"
-            class="p-4 space-y-3 max-h-[450px] overflow-auto"></div>
+            class="p-4 space-y-3 max-h-[450px] overflow-auto"
+          ></div>
 
           <div class="border-t p-5">
             <div class="flex justify-between text-lg font-bold">
@@ -85,7 +178,8 @@
 
             <button
               onclick="openCustomerCheckout()"
-              class="mt-4 w-full bg-pos-green hover:bg-pos-green-hover text-white py-3 rounded-xl font-semibold transition">
+              class="mt-4 w-full bg-pos-green hover:bg-pos-green-hover text-white py-3 rounded-xl font-semibold transition"
+            >
               Checkout
             </button>
           </div>
@@ -97,7 +191,8 @@
   <!-- FOOTER -->
   <footer class="bg-white border-t border-gray-200 mt-auto">
     <div
-      class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3">
+      class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3"
+    >
       <div class="flex items-center gap-2 text-sm text-gray-500">
         <i data-lucide="store"></i>
         <span>Seblak Mama Ica POS</span>

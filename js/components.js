@@ -37,6 +37,8 @@ async function loadComponents() {
         "./components/customer-menu.html",
       ),
 
+      loadComponent("customer-status-component", "./components/customer-status.html"),
+
       loadComponent("dashboard-component", "/components/dashboard.html"),
 
       loadComponent("sidebar-component", "./components/cashier-sidebar.html"),

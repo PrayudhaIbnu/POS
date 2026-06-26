@@ -2,149 +2,208 @@
   <!-- Overlay Mobile -->
   <div
     id="sidebar-overlay"
-    onclick="toggleLeftSidebar()"
-    class="hidden fixed inset-0 bg-black/40 z-40 md:hidden"></div>
+    onclick="toggleLeftSidebar(true)"
+    class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"></div>
 
   <!-- Sidebar -->
   <aside
     id="main-sidebar"
-    class="fixed md:relative inset-y-0 left-0 z-50 w-72 sm:w-64 bg-crimson bg-white text-white flex flex-col transform -translate-x-full md:translate-x-0 transition-all duration-300 shadow-xl md:shadow-none">
-    <!-- Header -->
-    <div
-      class="px-5 py-4 border-b border-white/10 flex items-center justify-between">
-      <div>
-        <h2
-          id="sidebar-store-name"
-          class="text-lg font-bold"
-          class="text-xl font-bold tracking-tight">
-          Seblak Mama Ica
-        </h2>
-        <p class="text-sm text-red-200 mt-1">Cashier Panel</p>
-      </div>
-
-      <button
-        onclick="toggleLeftSidebar()"
-        class="md:hidden p-1 rounded-lg bg-crimson-dark text-red-100 hover:text-white">
-        <i data-lucide="x" style="width: 20px; height: 20px"></i>
-      </button>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="flex-1 p-3 space-y-1">
-      <button
-        onclick="switchView('dashboard')"
-        id="nav-dashboard"
-        class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition">
-        <i data-lucide="layout-dashboard" style="width: 20px; height: 20px"></i>
-        <span class="font-medium">Dashboard</span>
-      </button>
-      <!-- Products Dropdown -->
-      <div class="w-full">
-        <button
-          onclick="toggleDropdown('products-menu')"
-          class="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg bg-crimson-dark text-white transition">
-          <div class="flex items-center gap-3">
-            <i data-lucide="layout-grid" style="width: 20px; height: 20px"></i>
-
-            <span class="font-medium"> Products </span>
-          </div>
-
-          <i
-            data-lucide="chevron-down"
-            id="products-arrow"
-            style="width: 20px; height: 20px">
-          </i>
-        </button>
-
-        <!-- Dropdown Content -->
-        <div id="products-menu" class="hidden mt-2 ml-4 space-y-2">
-          <button
-            onclick="switchView('stock')"
-            class="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-crimson-dark transition text-gray-100">
-            <i data-lucide="package" style="width: 20px; height: 20px"></i>
-
-            <span> Stok </span>
-          </button>
+    class="fixed md:sticky md:top-0 inset-y-0 left-0 z-50 w-72 bg-white border-r border-gray-200 flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300 shadow-xl md:shadow-none">
+    
+    <!-- HEADER / BRAND -->
+    <div class="px-5 py-5 border-b border-gray-200 flex items-center justify-between bg-crimson">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
+          <i data-lucide="utensils-crossed" class="text-white" style="width:22px;height:22px"></i>
+        </div>
+        <div class="min-w-0">
+          <h2
+            id="sidebar-store-name"
+            class="text-base font-bold text-white truncate">
+            Seblak Mama Ica
+          </h2>
+          <p class="text-xs text-white/70 mt-0.5">Cashier Panel</p>
         </div>
       </div>
 
       <button
-        onclick="switchView('orders')"
-        id="nav-orders"
-        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-100 hover:bg-crimson-dark transition">
-        <i data-lucide="clipboard-list" style="width: 20px; height: 20px"></i>
-        <span class="font-medium">Pesanan</span>
-        <span
-          id="order-badge"
-          class="ml-auto bg-crimson text-white text-xs font-bold px-2 py-1 rounded-full hidden"
-          >0</span
-        >
+        onclick="toggleLeftSidebar(true)"
+        class="md:hidden w-9 h-9 rounded-lg bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition">
+        <i data-lucide="x" style="width:18px;height:18px"></i>
       </button>
+    </div>
 
-      <button
-        id="nav-tables"
-        onclick="switchView('tables')"
-        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-100 hover:bg-crimson-dark transition">
-        <i data-lucide="table-2"></i>
+    <!-- NAVIGATION -->
+    <nav class="flex-1 overflow-y-auto p-3 space-y-6">
+      
+      <!-- MAIN MENU -->
+      <div>
+        <p class="px-4 mb-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+          Utama
+        </p>
+        
+        <div class="space-y-1">
+          <!-- Dashboard -->
+          <button
+            onclick="switchView('dashboard')"
+            id="nav-dashboard"
+            class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-700 hover:bg-gray-100 transition group">
+            <i data-lucide="layout-dashboard" class="nav-icon text-gray-500 group-hover:text-crimson transition" style="width:20px;height:20px"></i>
+            <span class="font-medium text-sm">Dashboard</span>
+          </button>
 
-        <span class="font-medium"> Meja </span>
-      </button>
+          <!-- Products (Main) -->
+          <button
+            onclick="switchView('products')"
+            id="nav-products"
+            class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-700 hover:bg-gray-100 transition group">
+            <i data-lucide="layout-grid" class="nav-icon text-gray-500 group-hover:text-crimson transition" style="width:20px;height:20px"></i>
+            <span class="font-medium text-sm">Produk</span>
+          </button>
 
-      <button
-        id="nav-reports"
-        onclick="switchView('reports')"
-        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-100 hover:bg-crimson-dark transition">
-        <i data-lucide="bar-chart-3" style="width: 20px; height: 20px"></i>
+          <!-- Orders -->
+          <button
+            onclick="switchView('orders')"
+            id="nav-orders"
+            class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-700 hover:bg-gray-100 transition group">
+            <i data-lucide="clipboard-list" class="nav-icon text-gray-500 group-hover:text-crimson transition" style="width:20px;height:20px"></i>
+            <span class="font-medium text-sm">Pesanan</span>
+            <span
+              id="order-badge"
+              class="ml-auto bg-crimson text-white text-[10px] font-bold px-2 py-0.5 rounded-full hidden min-w-[20px] text-center">
+              0
+            </span>
+          </button>
+        </div>
+      </div>
 
-        <span class="font-medium"> Laporan Penjualan </span>
-      </button>
+      <!-- OPERASIONAL -->
+      <div>
+        <p class="px-4 mb-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+          Operasional
+        </p>
 
-      <!-- Jika nanti ingin aktifkan tambah produk -->
-      <!--
-      <button
-        onclick="navigateTo('add-product')"
-        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-100 hover:bg-crimson-dark transition">
+        <div class="space-y-1">
+          <!-- Meja -->
+          <button
+            onclick="switchView('tables')"
+            id="nav-tables"
+            class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-700 hover:bg-gray-100 transition group">
+            <i data-lucide="utensils" class="nav-icon text-gray-500 group-hover:text-crimson transition" style="width:20px;height:20px"></i>
+            <span class="font-medium text-sm">Meja</span>
+          </button>
 
-        <i data-lucide="plus-circle"></i>
+          <!-- Stock (pindah dari dropdown ke menu utama) -->
+          <button
+            onclick="switchView('stock')"
+            id="nav-stock"
+            class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-700 hover:bg-gray-100 transition group">
+            <i data-lucide="package" class="nav-icon text-gray-500 group-hover:text-crimson transition" style="width:20px;height:20px"></i>
+            <span class="font-medium text-sm">Stok</span>
+          </button>
+        </div>
+      </div>
 
-        <span class="font-medium">
-          Tambah Produk
-        </span>
-      </button>
-      -->
+      <!-- ANALITIK -->
+      <div>
+        <p class="px-4 mb-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+          Analitik
+        </p>
+
+        <div class="space-y-1">
+          <!-- Laporan -->
+          <button
+            onclick="switchView('reports')"
+            id="nav-reports"
+            class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-700 hover:bg-gray-100 transition group">
+            <i data-lucide="bar-chart-3" class="nav-icon text-gray-500 group-hover:text-crimson transition" style="width:20px;height:20px"></i>
+            <span class="font-medium text-sm">Laporan</span>
+          </button>
+        </div>
+      </div>
+
     </nav>
 
-    <!-- Footer -->
-    <div class="p-4 border-t border-crimson-dark">
-      <button
-        onclick="navigateTo('login')"
-        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-crimson-dark transition">
-        <i data-lucide="log-out" style="width: 20px; height: 20px"></i>
+    <!-- FOOTER -->
+    <div class="p-3 border-t border-gray-200 bg-gray-50">
+      <!-- User Info -->
+      <div class="flex items-center gap-3 px-3 py-2 mb-2">
+        <div class="w-9 h-9 bg-crimson/10 rounded-full flex items-center justify-center flex-shrink-0">
+          <i data-lucide="user" class="text-crimson" style="width:16px;height:16px"></i>
+        </div>
+        <div class="min-w-0 flex-1">
+          <p class="text-sm font-semibold text-gray-800 truncate">Kasir</p>
+          <p class="text-[11px] text-gray-500 truncate">Admin</p>
+        </div>
+      </div>
 
-        <span> Logout </span>
+      <button
+        onclick="clearCustomerSession(); navigateTo('login')"
+        class="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-red-600 hover:bg-red-50 transition group">
+        <i data-lucide="log-out" class="text-red-500 group-hover:text-red-600 transition" style="width:18px;height:18px"></i>
+        <span class="font-medium text-sm">Keluar</span>
       </button>
     </div>
   </aside>
 
-  <!-- Main Area -->
-  <div class="flex-1 flex flex-col overflow-hidden">
+  <!-- MAIN AREA -->
+  <div class="flex-1 flex flex-col overflow-hidden min-w-0">
     <!-- Mobile Header -->
-    <header class="md:hidden sticky top-0 z-30 px-4 py-3 shadow-sm">
+    <header class="md:hidden sticky top-0 z-30 bg-white border-b border-gray-200 px-4 py-3 shadow-sm">
       <div class="flex items-center gap-3">
         <button
           onclick="toggleLeftSidebar()"
-          class="p-2 rounded-xl hover:bg-gray-100 transition">
-          <i data-lucide="menu" class="w-5 h-5"></i>
+          class="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition">
+          <i data-lucide="menu" class="w-5 h-5 text-gray-700"></i>
         </button>
 
-        <div class="flex-1 min-w-0">
-          <h3 class="text-base font-semibold text-gray-900 truncate">
-            Seblak Mama Ica
-          </h3>
-
-          <p class="text-xs text-gray-500">Cashier Panel</p>
+        <div class="flex items-center gap-2 flex-1 min-w-0">
+          <div class="w-9 h-9 bg-gradient-to-br from-crimson to-crimson-dark rounded-lg flex items-center justify-center flex-shrink-0">
+            <i data-lucide="utensils-crossed" class="text-white" style="width:18px;height:18px"></i>
+          </div>
+          <div class="min-w-0">
+            <h3 class="text-sm font-bold text-gray-900 truncate">
+              Seblak Mama Ica
+            </h3>
+            <p class="text-[11px] text-gray-500">Cashier Panel</p>
+          </div>
         </div>
       </div>
     </header>
   </div>
 </div>
+
+<!-- CSS untuk Active State -->
+<style>
+  .nav-item.active {
+    background-color: rgb(220 20 60 / 0.08) !important;
+    color: #DC143C !important;
+    font-weight: 600 !important;
+    position: relative;
+  }
+  
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background-color: #DC143C;
+    border-radius: 0 4px 4px 0;
+  }
+  
+  .nav-item.active .nav-icon {
+    color: #DC143C !important;
+  }
+
+  /* Custom scrollbar */
+  #main-sidebar nav::-webkit-scrollbar {
+    width: 4px;
+  }
+  #main-sidebar nav::-webkit-scrollbar-thumb {
+    background-color: rgb(209 213 219);
+    border-radius: 4px;
+  }
+</style>

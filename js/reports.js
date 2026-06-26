@@ -118,7 +118,6 @@ function renderReportTable() {
     return;
   }
 
-  // Show only last 50 for performance
   const displayReports = filteredReports.slice(0, 50);
 
   tbody.innerHTML = displayReports.map(trx => {
@@ -136,7 +135,14 @@ function renderReportTable() {
       'Card': 'bg-blue-100 text-blue-700'
     };
 
-    const itemCount = trx.items ? trx.items.reduce((sum, item) => sum + item.qty, 0) : 0;
+    // ✅ PERBAIKAN: Handle items yang undefined
+    const itemCount = trx.items && Array.isArray(trx.items) 
+      ? trx.items.reduce((sum, item) => sum + (item.qty || 1), 0) 
+      : 0;
+    
+    const itemPreview = trx.items && Array.isArray(trx.items) && trx.items.length > 0
+      ? trx.items.map(item => `${item.qty}x ${item.name}`).join(', ')
+      : '-';
 
     return `
       <tr class="hover:bg-gray-50 transition">
@@ -147,7 +153,10 @@ function renderReportTable() {
             ${trx.method}
           </span>
         </td>
-        <td class="p-4 text-gray-600">${itemCount} item</td>
+        <td class="p-4 text-gray-600" title="${itemPreview}">
+          <span class="font-medium">${itemCount} item</span>
+          ${itemPreview !== '-' ? `<p class="text-xs text-gray-400 truncate max-w-[200px]">${itemPreview}</p>` : ''}
+        </td>
         <td class="p-4 text-right font-bold text-gray-800">Rp ${trx.total.toLocaleString()}</td>
         <td class="p-4 text-center">
           <button
@@ -161,7 +170,6 @@ function renderReportTable() {
     `;
   }).join('');
 
-  // Update pagination info
   const from = filteredReports.length > 0 ? 1 : 0;
   const to = Math.min(filteredReports.length, 50);
   const total = filteredReports.length;
@@ -305,11 +313,13 @@ function viewTransactionDetail(trxId) {
   const modal = document.createElement('div');
   modal.className = 'fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn';
   
-  const totalItems = trx.items ? trx.items.reduce((sum, item) => sum + item.qty, 0) : 0;
+  // ✅ Handle items yang undefined
+  const totalItems = trx.items && Array.isArray(trx.items) 
+    ? trx.items.reduce((sum, item) => sum + (item.qty || 1), 0) 
+    : 0;
 
   modal.innerHTML = `
     <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden">
-      <!-- Header -->
       <div class="bg-gradient-to-r from-crimson to-crimson-dark text-white p-6">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-3">
@@ -327,13 +337,11 @@ function viewTransactionDetail(trxId) {
         </div>
       </div>
 
-      <!-- Content -->
       <div class="p-6 max-h-[70vh] overflow-y-auto">
-        <!-- Info Grid -->
         <div class="grid grid-cols-2 gap-3 mb-5">
           <div class="bg-gray-50 rounded-xl p-3">
             <p class="text-xs text-gray-500 mb-1">Waktu</p>
-            <p class="font-semibold text-gray-800 text-sm">${trx.time || new Date(trx.timestamp || trx.id).toLocaleString('id-ID')}</p>
+            <p class="font-semibold text-gray-800 text-sm">${trx.time || '-'}</p>
           </div>
           <div class="bg-gray-50 rounded-xl p-3">
             <p class="text-xs text-gray-500 mb-1">Metode</p>
@@ -347,14 +355,11 @@ function viewTransactionDetail(trxId) {
           </div>
           <div class="bg-gray-50 rounded-xl p-3">
             <p class="text-xs text-gray-500 mb-1">Status</p>
-            <span class="inline-block px-2 py-1 rounded text-xs font-semibold bg-green-100 text-green-700">
-              Selesai
-            </span>
+            <span class="inline-block px-2 py-1 rounded text-xs font-semibold bg-green-100 text-green-700">Selesai</span>
           </div>
         </div>
 
-        <!-- Items -->
-        ${trx.items ? `
+        ${trx.items && Array.isArray(trx.items) && trx.items.length > 0 ? `
           <div class="mb-5">
             <p class="text-sm font-semibold text-gray-700 mb-3">Item yang Dibeli</p>
             <div class="space-y-2">
@@ -370,9 +375,12 @@ function viewTransactionDetail(trxId) {
               `).join('')}
             </div>
           </div>
-        ` : ''}
+        ` : `
+          <div class="mb-5 bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-center">
+            <p class="text-sm text-yellow-700">⚠️ Detail item tidak tersedia untuk transaksi lama</p>
+          </div>
+        `}
 
-        <!-- Total -->
         <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4 border border-gray-200">
           <div class="flex items-center justify-between">
             <p class="text-sm text-gray-600 font-medium">Total Pembayaran</p>
@@ -393,9 +401,12 @@ function exportReports() {
     return;
   }
 
-  let csv = 'Waktu,ID Transaksi,Metode,Total\n';
+  let csv = 'Waktu,ID Transaksi,Metode,Jumlah Item,Total\n';
   filteredReports.forEach(trx => {
-    csv += `${trx.time || new Date(trx.timestamp || trx.id).toLocaleString('id-ID')},${trx.id},${trx.method},${trx.total}\n`;
+    const itemCount = trx.items && Array.isArray(trx.items) 
+      ? trx.items.reduce((sum, item) => sum + (item.qty || 1), 0) 
+      : 0;
+    csv += `${trx.time || '-'},${trx.id},${trx.method},${itemCount},${trx.total}\n`;
   });
 
   const blob = new Blob([csv], { type: 'text/csv' });
